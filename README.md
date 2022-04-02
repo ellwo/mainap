@@ -1,3 +1,9 @@
+
+<code>
+git clone https://github.com/ellwo/mainap.git
+</code>
+
+
 <code>
   cd mainap
   </code>

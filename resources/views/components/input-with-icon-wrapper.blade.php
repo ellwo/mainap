@@ -3,4 +3,11 @@
         {{ $icon }}
     </div>
     {{ $slot }}
+
+    @isset($righticon)
+
+    <div class="absolute right-0 z-30 inset-y-1 flex items-center px-4 ">
+        {{$righticon}}
+    </div>
+    @endisset
 </div>

@@ -6,7 +6,7 @@
 
     switch ($variant) {
         case 'primary':
-            $variantClasses = 'bg-primary text-base-100 hover:bg-purple-600 focus:ring-purple-500';
+            $variantClasses = 'bg-primary text-primary-dark hover:text-primary-light hover:bg-primary-dark focus:ring-primary-light';
         break;
         case 'secondary':
             $variantClasses = 'bg-white text-gray-500 hover:bg-gray-100 focus:ring-purple-500 dark:text-gray-400 dark:bg-dark-eval-1 dark:hover:bg-dark-eval-2 dark:hover:text-gray-200';
@@ -25,6 +25,9 @@
         break;
         case 'black':
             $variantClasses = 'bg-black text-gray-300 hover:text-white hover:bg-gray-800 focus:ring-black dark:hover:bg-dark-eval-3';
+        break;
+        case 'goset':
+        $variantClasses='bg-transparent';
         break;
         default:
             $variantClasses = 'bg-purple-500 text-white hover:bg-purple-600 focus:ring-purple-500';
@@ -62,7 +65,7 @@
         @endif
     </a>
 @else
-    <button {{ $attributes->merge(['type' => 'submit', 'class' => $classes]) }}>
+    <button  {{ $attributes->merge(['type' => 'submit', 'class' => $classes]) }}>
         {{ $slot }}
         @if($iconOnly)
             <span class="sr-only">{{ $srText ?? '' }}</span>

@@ -2,9 +2,7 @@
 namespace App\Http\Traits;
 
 use Alexmg86\LaravelSubQuery\Traits\LaravelSubQueryTrait;
-use App\Models\ChatMessage;
 use App\Models\ChatRoom;
-use App\Models\Convrstion;
 use App\Models\User;
 use Str;
 trait CanConvristion{
@@ -55,11 +53,11 @@ trait CanConvristion{
     public function block_convrstion($id)
     {
 
-        $convrs=Convrstion::find($id);
+        // $convrs=Convrstion::find($id);
 
-        $convrs->isblocked=1;
-        $convrs->save();
-                # code...
+        // $convrs->isblocked=1;
+        // $convrs->save();
+        //         # code...
         // $this->convristions()->where("to_id","=",$model->id)
         // ->where("to_type","=",get_class($model))->get();
 

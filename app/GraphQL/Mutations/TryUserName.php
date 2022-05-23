@@ -20,7 +20,7 @@ class TryUserName
 
 
         $validator = \Illuminate\Support\Facades\Validator::make($args, [
-            'username' => ['min:4','regex:/^[\w-]*$/','required','string', 'max:191', 'unique:users','unique:bussinses'],
+            'username' => ['min:4','regex:regex:/^[a-z\d_.]{2,20}$/i','required','string', 'max:191', 'unique:users','unique:bussinses'],
           ]);
 
         if($validator->fails()){

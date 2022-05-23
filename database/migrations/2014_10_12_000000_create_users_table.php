@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer("gender")->nullable();
             $table->text("avatar")->nullable();
+            $table->text("bio")->nullable();
             $table->rememberToken();
            // $table->foreignId('city_id')->nullable()->constrained('cities');
             $table->timestamps();

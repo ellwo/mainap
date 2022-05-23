@@ -9,8 +9,10 @@
 
 :root {
     --light: #ffffff;
-    --dark: #152e4d;
-    --darker: #12263f;
+    /* --dark: #0b1436;
+    --darker: #070C21; */
+    --dark: #13263d;
+    --darker: #0e1b2c;
     /*  */
     --color-primary: var(--color-cyan);
     --color-primary-50: var(--color-cyan-50);
@@ -54,20 +56,20 @@
     --color-teal-darker: #115e59;
     /*  */
     --color-fuchsia: #FF7D00;
-    --color-fuchsia-50: #b3b9ce62;
+    --color-fuchsia-50: #c1c3c9;
     --color-fuchsia-100: #424474;
     --color-fuchsia-light: #FF7D00;
     --color-fuchsia-lighter: #fa973a;
-    --color-fuchsia-dark: #05074e;
-    --color-fuchsia-darker: #0b0842;
+    --color-fuchsia-dark: #101b3f;
+    --color-fuchsia-darker: #070C21;
     --color-fuchsia-onprimary: #0b0842;
     --color-mycolor: #FF7D00;
     --color-mycolor-50: #22316962;
-    --color-mycolor-100: #ad5503;
+    --color-mycolor-100: #fa973a;
     --color-mycolor-light: #FF7D00;
     --color-mycolor-lighter: #fa973a;
-    --color-mycolor-dark: #05074e;
-    --color-mycolor-darker: #0b0842;
+    --color-mycolor-dark: #152e4d;
+    --color-mycolor-darker: #12263f;
     --color-mycolor-onprimary: #0b0842;
     /*  */
     --color-violet: #7c3aed;
@@ -77,4 +79,26 @@
     --color-violet-lighter: #a78bfa;
     --color-violet-dark: #6d28d9;
     --color-violet-darker: #5b21b6;
+}
+
+@layer components {
+    .toggle:checked+span {
+        @apply top-0 left-6 bg-primary;
+    }
+    .toggle:disabled+span {
+        @apply bg-gray-500 shadow-none;
+    }
+    .toggle:checked:disabled {
+        @apply bg-gray-200;
+    }
+    .toggle:checked:disabled+span {
+        @apply shadow-none bg-primary-lighter;
+    }
+    .toggle:focus+span {
+        @apply ring ring-primary-lighter;
+    }
+    input:invalid.invalid,
+    textarea:invalid.invalid {
+        @apply ring ring-danger-light dark: ring-danger;
+    }
 }

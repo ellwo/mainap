@@ -30,7 +30,6 @@
         <div class="flex flex-col min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-bg dark:text-gray-200">
             {{ $slot }}
 
-            <x-footer />
         </div>
 
         <div class="fixed top-10 right-10">
@@ -41,6 +40,8 @@
         </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
 
     @isset($script)
         {{$script}}

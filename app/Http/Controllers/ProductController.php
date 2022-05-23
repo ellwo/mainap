@@ -58,6 +58,7 @@ class ProductController extends Controller
 
         //return $product->;
         //dd($product);re
+        return dd($product);
         return ProductResource::make($product);
         //
     }

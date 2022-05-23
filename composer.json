@@ -16,6 +16,7 @@
         "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "livewire/livewire": "^2.10",
         "mll-lab/laravel-graphql-playground": "^2.5",
         "nagy/laravel-rating": "^2.2",
         "nuwave/lighthouse": "^5.33",

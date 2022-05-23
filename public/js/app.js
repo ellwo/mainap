@@ -5452,149 +5452,152 @@ document.addEventListener("alpine:init", function () {
     };
   });
 });
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data("setup", function () {
-  var getTheme = function getTheme() {
-    if (window.localStorage.getItem('dark')) {
-      return JSON.parse(window.localStorage.getItem('dark'));
-    }
+document.addEventListener("alpine:init", function () {
+  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data("setup", function () {
+    var getTheme = function getTheme() {
+      if (window.localStorage.getItem('dark')) {
+        return JSON.parse(window.localStorage.getItem('dark'));
+      }
 
-    return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  };
-
-  var setTheme = function setTheme(value) {
-    window.localStorage.setItem('dark', value);
-  };
-
-  var getColor = function getColor() {
-    if (window.localStorage.getItem('color')) {
-      return window.localStorage.getItem('color');
-    }
-
-    return 'cyan';
-  };
-
-  var setColors = function setColors(color) {
-    var root = document.documentElement;
-    root.style.setProperty('--color-primary', "var(--color-".concat(color, ")"));
-    root.style.setProperty('--color-primary-50', "var(--color-".concat(color, "-50)"));
-    root.style.setProperty('--color-primary-100', "var(--color-".concat(color, "-100)"));
-    root.style.setProperty('--color-primary-light', "var(--color-".concat(color, "-light)"));
-    root.style.setProperty('--color-primary-lighter', "var(--color-".concat(color, "-lighter)"));
-    root.style.setProperty('--color-primary-dark', "var(--color-".concat(color, "-dark)"));
-    root.style.setProperty('--color-primary-darker', "var(--color-".concat(color, "-darker)")); //   this.selectedColor = color
-
-    window.localStorage.setItem('color', color); //
-  };
-
-  var updateBarChart = function updateBarChart(on) {
-    var data = {
-      data: randomData(),
-      backgroundColor: 'rgb(207, 250, 254)'
+      return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     };
 
-    if (on) {
-      barChart.data.datasets.push(data);
-      barChart.update();
-    } else {
-      barChart.data.datasets.splice(1);
-      barChart.update();
-    }
-  };
+    var setTheme = function setTheme(value) {
+      window.localStorage.setItem('dark', value);
+    };
 
-  var updateDoughnutChart = function updateDoughnutChart(on) {
-    var data = random();
-    var color = 'rgb(207, 250, 254)';
+    var getColor = function getColor() {
+      if (window.localStorage.getItem('color')) {
+        return window.localStorage.getItem('color');
+      }
 
-    if (on) {
-      doughnutChart.data.labels.unshift('Seb');
-      doughnutChart.data.datasets[0].data.unshift(data);
-      doughnutChart.data.datasets[0].backgroundColor.unshift(color);
-      doughnutChart.update();
-    } else {
-      doughnutChart.data.labels.splice(0, 1);
-      doughnutChart.data.datasets[0].data.splice(0, 1);
-      doughnutChart.data.datasets[0].backgroundColor.splice(0, 1);
-      doughnutChart.update();
-    }
-  };
+      return 'cyan';
+    };
 
-  var updateLineChart = function updateLineChart() {
-    lineChart.data.datasets[0].data.reverse();
-    lineChart.update();
-  };
+    var setColors = function setColors(color) {
+      var root = document.documentElement;
+      root.style.setProperty('--color-primary', "var(--color-".concat(color, ")"));
+      root.style.setProperty('--color-primary-50', "var(--color-".concat(color, "-50)"));
+      root.style.setProperty('--color-primary-100', "var(--color-".concat(color, "-100)"));
+      root.style.setProperty('--color-primary-light', "var(--color-".concat(color, "-light)"));
+      root.style.setProperty('--color-primary-lighter', "var(--color-".concat(color, "-lighter)"));
+      root.style.setProperty('--color-primary-dark', "var(--color-".concat(color, "-dark)"));
+      root.style.setProperty('--color-primary-darker', "var(--color-".concat(color, "-darker)")); //   this.selectedColor = color
 
-  return {
-    loading: true,
-    isDark: getTheme(),
-    toggleTheme: function toggleTheme() {
-      this.isDark = !this.isDark;
-      setTheme(this.isDark);
-    },
-    setLightTheme: function setLightTheme() {
-      this.isDark = false;
-      setTheme(this.isDark);
-    },
-    setDarkTheme: function setDarkTheme() {
-      this.isDark = true;
-      setTheme(this.isDark);
-    },
-    color: getColor(),
-    //  selectedColor: 'cyan',
-    setColors: setColors,
-    toggleSidbarMenu: function toggleSidbarMenu() {
-      this.isSidebarOpen = !this.isSidebarOpen;
-    },
-    isSettingsPanelOpen: false,
-    openSettingsPanel: function openSettingsPanel() {
-      var _this2 = this;
+      window.localStorage.setItem('color', color); //
+    };
 
-      this.isSettingsPanelOpen = true;
-      this.$nextTick(function () {
-        _this2.$refs.settingsPanel.focus();
-      });
-    },
-    isNotificationsPanelOpen: false,
-    openNotificationsPanel: function openNotificationsPanel() {
-      var _this3 = this;
+    var updateBarChart = function updateBarChart(on) {
+      var data = {
+        data: randomData(),
+        backgroundColor: 'rgb(207, 250, 254)'
+      };
 
-      this.isNotificationsPanelOpen = true;
-      this.$nextTick(function () {
-        _this3.$refs.notificationsPanel.focus();
-      });
-    },
-    isSearchPanelOpen: false,
-    openSearchPanel: function openSearchPanel() {
-      var _this4 = this;
+      if (on) {
+        barChart.data.datasets.push(data);
+        barChart.update();
+      } else {
+        barChart.data.datasets.splice(1);
+        barChart.update();
+      }
+    };
 
-      this.isSearchPanelOpen = true;
-      this.$nextTick(function () {
-        _this4.$refs.searchInput.focus();
-      });
-    },
-    isMobileSubMenuOpen: false,
-    openMobileSubMenu: function openMobileSubMenu() {
-      var _this5 = this;
+    var updateDoughnutChart = function updateDoughnutChart(on) {
+      var data = random();
+      var color = 'rgb(207, 250, 254)';
 
-      this.isMobileSubMenuOpen = true;
-      this.$nextTick(function () {
-        _this5.$refs.mobileSubMenu.focus();
-      });
-    },
-    isMobileMainMenuOpen: false,
-    openMobileMainMenu: function openMobileMainMenu() {
-      var _this6 = this;
+      if (on) {
+        doughnutChart.data.labels.unshift('Seb');
+        doughnutChart.data.datasets[0].data.unshift(data);
+        doughnutChart.data.datasets[0].backgroundColor.unshift(color);
+        doughnutChart.update();
+      } else {
+        doughnutChart.data.labels.splice(0, 1);
+        doughnutChart.data.datasets[0].data.splice(0, 1);
+        doughnutChart.data.datasets[0].backgroundColor.splice(0, 1);
+        doughnutChart.update();
+      }
+    };
 
-      this.isMobileMainMenuOpen = true;
-      this.$nextTick(function () {
-        _this6.$refs.mobileMainMenu.focus();
-      });
-    },
-    updateBarChart: updateBarChart,
-    updateDoughnutChart: updateDoughnutChart,
-    updateLineChart: updateLineChart
-  };
+    var updateLineChart = function updateLineChart() {
+      lineChart.data.datasets[0].data.reverse();
+      lineChart.update();
+    };
+
+    return {
+      loading: true,
+      isDark: getTheme(),
+      toggleTheme: function toggleTheme() {
+        this.isDark = !this.isDark;
+        setTheme(this.isDark);
+      },
+      setLightTheme: function setLightTheme() {
+        this.isDark = false;
+        setTheme(this.isDark);
+      },
+      setDarkTheme: function setDarkTheme() {
+        this.isDark = true;
+        setTheme(this.isDark);
+      },
+      color: getColor(),
+      //  selectedColor: 'cyan',
+      setColors: setColors,
+      toggleSidbarMenu: function toggleSidbarMenu() {
+        this.isSidebarOpen = !this.isSidebarOpen;
+      },
+      isSettingsPanelOpen: false,
+      openSettingsPanel: function openSettingsPanel() {
+        var _this2 = this;
+
+        this.isSettingsPanelOpen = true;
+        this.$nextTick(function () {
+          _this2.$refs.settingsPanel.focus();
+        });
+      },
+      isNotificationsPanelOpen: false,
+      openNotificationsPanel: function openNotificationsPanel() {
+        var _this3 = this;
+
+        this.isNotificationsPanelOpen = true;
+        this.$nextTick(function () {
+          _this3.$refs.notificationsPanel.focus();
+        });
+      },
+      isSearchPanelOpen: false,
+      openSearchPanel: function openSearchPanel() {
+        var _this4 = this;
+
+        this.isSearchPanelOpen = true;
+        this.$nextTick(function () {
+          _this4.$refs.searchInput.focus();
+        });
+      },
+      isMobileSubMenuOpen: false,
+      openMobileSubMenu: function openMobileSubMenu() {
+        var _this5 = this;
+
+        this.isMobileSubMenuOpen = true;
+        this.$nextTick(function () {
+          _this5.$refs.mobileSubMenu.focus();
+        });
+      },
+      isMobileMainMenuOpen: false,
+      openMobileMainMenu: function openMobileMainMenu() {
+        var _this6 = this;
+
+        this.isMobileMainMenuOpen = true;
+        this.$nextTick(function () {
+          _this6.$refs.mobileMainMenu.focus();
+        });
+      },
+      updateBarChart: updateBarChart,
+      updateDoughnutChart: updateDoughnutChart,
+      updateLineChart: updateLineChart
+    };
+  });
 });
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_collapse__WEBPACK_IMPORTED_MODULE_1__["default"]);
+alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].plugin(_alpinejs_collapse__WEBPACK_IMPORTED_MODULE_1__["default"]); // All javascript code in this project for now is just for demo DON'T RELY ON IT
+
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 
 /***/ }),

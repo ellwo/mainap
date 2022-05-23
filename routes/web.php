@@ -2,7 +2,10 @@
 
 
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Bussinse;
+use App\Models\City;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +20,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::get("/products",[\App\Http\Controllers\Api\BussinseController::class,'index']);
+
+
+
+
+
+
+
+Route::get("/getcity",function(Request $request){
+
+    return City::all();
+
+});
 
 Route::get('/country',[CountryController::class,'index']);
 Route::get('/', function () {
@@ -45,5 +60,9 @@ Route::get('/buttons/icon', function () {
 Route::get('/buttons/text-icon', function () {
     return view('buttons-showcase.text-icon');
 })->middleware(['auth'])->name('buttons.text-icon');
+
+Route::apiResource('products',\App\Http\Controllers\ProductController::class);
+
+
 
 require __DIR__ . '/auth.php';

@@ -5,9 +5,9 @@ scalar JSON @scalar(class: "App\\GraphQL\\Scalars\\JSON")
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
 type Query {
-    users: [User!]! @all @guard
+    users: [User!]! @all
     user(id: ID @eq): User @find
-    city(id:ID @eq):City @find
+    city:[City] @all
     departments:Department! @all
     products:Product! @paginate(type: PAGINATOR)
     productsSearch(name: String @where(operator: "like" )):[Product!]! @paginate
@@ -17,6 +17,10 @@ type Query {
     mainquery:MainQueryResult
 
 }
+
+
+
+
 
 type MainQueryResult{
     products:[Product]
@@ -211,6 +215,10 @@ type Country {
     name:String!
     cities:[City]@hasMany
 }
+
+
+
+
 type City {
     id:ID!
     name:String!

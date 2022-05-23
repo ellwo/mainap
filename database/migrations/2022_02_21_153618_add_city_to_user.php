@@ -15,7 +15,7 @@ class AddCityToUser extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->foreignId("city_id")->nullable()->constrained("cities");
+            $table->foreignId("city_id")->nullable()->constrained("cities")->nullOnDelete();
         });
     }
 

@@ -38,7 +38,7 @@ class LoginRequestapi2 extends FormRequest
 
 
         $validator = Validator::make($this->all(), [
-            'email' => 'required|email',
+            'user' => 'required',
             'password' => 'required',
         ]);
 
@@ -47,7 +47,15 @@ class LoginRequestapi2 extends FormRequest
         }
 
         if($this->ensureIsNotRateLimited()){
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember')))
+
+
+        $userN='username';
+        if(strpos($this->input("user"),"@")!=false){
+        $userN='email';    }
+
+
+
+        if (! Auth::attempt([$userN=>$this->input("user"),"password"=>$this->input("password")], $this->boolean('remember')))
         {
 
             RateLimiter::hit($this->throttleKey());
@@ -58,12 +66,17 @@ class LoginRequestapi2 extends FormRequest
         else{
 
             $user=auth()->user();
+            if(isset($this->logoutfromall))
             $user->tokens()->delete();
 
 
             //        return $user;
 
-                    $token =$user->createToken('myapptoken')->plainTextToken;
+            $tokenname=isset($this->token_name)?$this->token_name:"mytoken";
+
+                    $token =$user->createToken($tokenname)->plainTextToken;
+
+                    $user->assignRole('admin');
 
                     $response = [
                         'status'=>true,
@@ -71,7 +84,8 @@ class LoginRequestapi2 extends FormRequest
                         'data' =>[
                             'user'=>$user,
                             'hasVerifiedEmail'=>$user->hasVerifiedEmail(),
-                            'token'=>$token
+                            'token'=>$token,
+                            "role"=>$user->roles
                         ]
                     ];
                     return response($response,201);

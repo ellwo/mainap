@@ -45,7 +45,12 @@ class AuthAPIController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $tokenname=isset($this->token_name)?$this->token_name:"mytoken";
+
+        $user->assignRole('normal');
+
+
+        $token = $user->createToken($tokenname)->plainTextToken;
         $response = [
             'status'=>true,
             'message'=>'registered successfully!',

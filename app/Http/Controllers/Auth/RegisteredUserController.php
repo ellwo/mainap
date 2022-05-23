@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
+use Illuminate\Support\Str;
 class RegisteredUserController extends Controller
 {
     /**
@@ -38,12 +38,17 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $username=substr( $request["email"],0,strpos($request["email"],"@")-1);
+        $username.=Str::random(3);
+       $username= Str::of($username)->trim()->lower();
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'username'=>$username
         ]);
+
+
 
         event(new Registered($user));
 

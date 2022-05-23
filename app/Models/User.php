@@ -12,12 +12,14 @@ use Znck\Eloquent\Traits\BelongsToThrough;
 use Nagy\LaravelRating\Traits\Rate\CanRate;
 use Rennokki\Befriended\Traits\Block;
 use Rennokki\Befriended\Contracts\Blocking;
+use Rennokki\Befriended\Contracts\Follower;
+use Rennokki\Befriended\Traits\CanFollow;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements Blocking
+class User extends Authenticatable implements Blocking,Follower
 {
     use HasApiTokens, HasFactory, Notifiable,CanRate,BelongsToThrough,
-    CanConvristion,Block,HasRoles;
+    CanConvristion,Block,HasRoles,CanFollow;
 
     /**
      * The attributes that are mass assignable.
@@ -60,50 +62,23 @@ class User extends Authenticatable implements Blocking
     }
 
 
-    public function chatrooms()
-    {
-        # code...
-        return   ChatRoom::with("messages")->
-        where(function ($query) {
-            $query->where("to_id",$this->id)
-            ->Orwhere("from_id",$this->id);
+    // public function chatrooms()
+    // {
+    //     # code...
+    //     return   ChatRoom::with("messages")->
+    //     where(function ($query) {
+    //         $query->where("to_id",$this->id)
+    //         ->Orwhere("from_id",$this->id);
 
-        })
-        ->where(function($query){
-            $query->where("from_type",get_class($this))
-            ->Orwhere("to_type",get_class($this));
-        })
-        ->orderByRelation("messages:id");
+    //     })
+    //     ->where(function($query){
+    //         $query->where("from_type",get_class($this))
+    //         ->Orwhere("to_type",get_class($this));
+    //     })
+    //     ->orderByRelation("messages:id");
 
-    }
+    // }
 
-    public function convristions(){
-
-
-
-      //  return $this->hasMany(Convrstion::class,"from_id");
-        return  Convrstion::
-        with("messages")->
-        where(function ($query) {
-            $query->where("to_id",$this->id)
-            ->Orwhere("from_id",$this->id);
-
-        })
-        ->where(function($query){
-            $query->where("from_type",get_class($this))
-            ->Orwhere("to_type",get_class($this));
-        })
-        ->orderByRelation("messages:id");
-    }
-    public function enable_convristions(){
-
-        $fromConvris=$this->convristions();
-        $toConvris=$this->morphMany(Convrstion::class,"to");
-
-
-        return $fromConvris->merge($toConvris);
-
-    }
 
 
     public function token($tokenName="graphql"){
@@ -119,7 +94,7 @@ class User extends Authenticatable implements Blocking
     }
 
 
-    public function unfollow($buss_id)
+    public function munfollow($buss_id)
     {
 
         $buss=$this->bussinses_followed()->where("id",$buss_id)->first();
@@ -133,7 +108,7 @@ class User extends Authenticatable implements Blocking
         # code...
     }
 
-    public function follow($buss_id)
+    public function mfollow($buss_id)
     {
 
         $buss=Bussinse::find($buss_id);

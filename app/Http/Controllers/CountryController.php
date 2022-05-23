@@ -19,6 +19,28 @@ class CountryController extends Controller
 
 
 
+        $user=auth()->user();
+
+        $bus=Bussinse::find(6);
+
+        $user->follow($bus);
+
+        $bus=Bussinse::find(12);
+
+        $user->follow($bus);
+
+        $bus=Bussinse::find(8);
+
+        $user->follow($bus);
+
+        $bus=Bussinse::find(10);
+
+        $user->follow($bus);
+
+        return "Ddd";
+
+
+
 
        $user= User::find(1);
 

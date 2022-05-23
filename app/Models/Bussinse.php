@@ -13,13 +13,16 @@ use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Rennokki\Befriended\Traits\Block;
 use Rennokki\Befriended\Scopes\BlockFilterable;
 use Rennokki\Befriended\Contracts\Blocking;
-class Bussinse extends Model implements Blocking
+use Rennokki\Befriended\Contracts\Followable;
+use Rennokki\Befriended\Traits\CanBeFollowed;
+
+class Bussinse extends Model implements Blocking,Followable
 {
     use HasFactory,Rateable,
         LaravelSubQueryTrait,
         \Znck\Eloquent\Traits\BelongsToThrough,
         \Staudenmeir\EloquentHasManyDeep\HasRelationships,
-        CanConvristion,Block,BlockFilterable,Reportable;
+        CanConvristion,Block,BlockFilterable,Reportable,CanBeFollowed;
     protected $fillable=[
         "name",
         "username",
@@ -51,41 +54,6 @@ class Bussinse extends Model implements Blocking
         # code...
     }
 
-    public function convristions(){
-
-
-
-        return $this->morphMany(Convrstion::class,"to")
-        ->with("messages")->where("isblocked",0)->orderByRelation("messages:id");
-
-
-        return Convrstion::with("messages")->
-        where(function ($query) {
-            $query->where("to_id",$this->id)
-            ->Orwhere("from_id",$this->id);
-
-        })
-        ->where(function($query){
-            $query->where("from_type",get_class($this))
-            ->Orwhere("to_type",get_class($this));
-        })
-        ->where("isblocked",0)
-        ->orderByRelation("messages:id")
-        ->get();
-    }
-
-
-    public function enable_convristions(){
-
-        $fromConvris=$this->convristions()->get();
-        $toConvris=$this->morphMany(Convrstion::class,"to")->get();
-
-
-        $enacle_conv=$toConvris->merge($fromConvris);
-        return $enacle_conv->where("isblocked","=",0);
-
-    }
-
     public function address_json(){
         return json_encode($this->address);
     }
@@ -97,7 +65,7 @@ class Bussinse extends Model implements Blocking
 
 
 
-    public function followers(){
+    public function mfollowers(){
 
         return $this->belongsToMany(User::class)
         ->wherePivot("isblocked","=",0);

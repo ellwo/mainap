@@ -64,6 +64,11 @@ Route::get('/buttons/t', function () {
     return view('buttons-showcase.text-icon');
 })->middleware(['auth'])->name('buttons.text-icon');
 
+Route::get("/heho",function(){
+
+    return view("components.sidebar.sidebar");
+});
+
 Route::apiResource('products',\App\Http\Controllers\ProductController::class);
 
 

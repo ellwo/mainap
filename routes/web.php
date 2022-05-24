@@ -60,6 +60,9 @@ Route::get('/buttons/icon', function () {
 Route::get('/buttons/text-icon', function () {
     return view('buttons-showcase.text-icon');
 })->middleware(['auth'])->name('buttons.text-icon');
+Route::get('/buttons/t', function () {
+    return view('buttons-showcase.text-icon');
+})->middleware(['auth'])->name('buttons.text-icon');
 
 Route::get("/heho",function(){
 

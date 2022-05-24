@@ -7,12 +7,6 @@
         <title>Laravel</title>
 
 
-        dlc dclskd
-        dlc dclskd
-        dlc dclskd
-        dlc dclskd
-
-
 
         <s>sa smdna sdland asdk </s>
 

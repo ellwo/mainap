@@ -69,6 +69,11 @@ Route::get("/heho",function(){
     return view("components.sidebar.sidebar");
 });
 
+Route::get("/heho2",function(){
+
+    return view("components.sidebar.sidebar");
+});
+
 Route::apiResource('products',\App\Http\Controllers\ProductController::class);
 
 

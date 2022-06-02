@@ -57,6 +57,13 @@ class Service extends Model
     }
 
 
+    public function owner()
+    {
+
+        return $this->morphTo();
+        # code...
+    }
+
 
     public function vzt()
     {

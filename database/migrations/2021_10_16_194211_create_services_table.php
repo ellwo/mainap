@@ -22,9 +22,9 @@ class CreateServicesTable extends Migration
             $table->float("min_pyment")->nullable();
             $table->integer("how_long")->nullable();
             $table->text("image")->nullable();
+            $table->text("owner_type")->nullable();
+            $table->bigInteger("owner_id")->nullable();
 
-            $table->foreignId('bussinse_id')->nullable()->constrained('bussinses')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
             $table->foreignId('department_id')->constrained('departments');
             //$table->
 

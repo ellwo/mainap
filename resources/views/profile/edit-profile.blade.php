@@ -104,7 +104,7 @@
                         placeholder="{{ __('') }}"  />
                     </x-input-with-icon-wrapper>
                 </div>
-                <div class="w-full form-item" dir="auto">
+                <div class="w-full form-item" >
                     <label class="text-xl ">البايو</label>
             <textarea cols="30" rows="10"
             name="bio" maxlength="191"

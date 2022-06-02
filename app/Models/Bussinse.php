@@ -71,11 +71,6 @@ class Bussinse extends Model implements Blocking,Followable
           return 0;
 
     }
-    public function chroms()
-    {
-        //return $this->morphToMany(ChatRoom::class,"to")->;
-        # code...
-    }
 
     public function address_json(){
         return json_encode($this->address);
@@ -85,15 +80,6 @@ class Bussinse extends Model implements Blocking,Followable
     }
 
 
-
-
-
-    public function mfollowers(){
-
-        return $this->belongsToMany(User::class)
-        ->wherePivot("isblocked","=",0);
-     //   return $this->hasMany(Follower::class);
-    }
 
 
 
@@ -186,10 +172,9 @@ class Bussinse extends Model implements Blocking,Followable
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->morphMany(Product::class,'owner');
+
     }
-
-
 
 
 
@@ -197,7 +182,7 @@ class Bussinse extends Model implements Blocking,Followable
 
     public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->morphMany(Service::class,'owner');
         # code...
     }
 

@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Part;
 use App\Models\Product;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -21,17 +22,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      //  \App\Models\Country::factory(5)->create();
-       // \App\Models\City::factory(10)->create();
-      //  \App\Models\User::factory(10)->create();
-      //  \App\Models\Department::factory(10)->create();
-        \App\Models\Part::factory(20)->create();
-        \App\Models\Bussinse::factory(20)->create();
+    //    \App\Models\Country::factory(1)->create();
+    //    \App\Models\City::factory(10)->create();
+    //    \App\Models\User::factory(30)->create();
+
+
+    //    \App\Models\Department::factory(20)->create();
+    //     \App\Models\Part::factory(120)->create();
+    //     \App\Models\Bussinse::factory(30)->create();
         \App\Models\Product::factory(50)->create();
         \App\Models\Service::factory(50)->create();
-        \App\Models\Part::factory(80)->create();
+        // \App\Models\Part::factory(80)->create();
 
         $bussinses=Bussinse::all();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         foreach ($bussinses as $bussnise){
             // $contr=Country::inRandomOrder()->first();
             // $cities=$contr->cities->take(rand(1,4))->pluck("id");
@@ -41,6 +58,12 @@ class DatabaseSeeder extends Seeder
 
             // $parts=$bussnise->department->parts()->inRandomOrder()->take(rand(2,6))->pluck('id');
             // $bussnise->parts()->attach($parts);
+
+            if($bussnise->department->type==1)
+            $bussnise->products()->saveMany(Product::where("owner_type","=",null)->where("owner_id","=",null)->take(rand(4,8))->get());
+            else
+            $bussnise->services()->saveMany(Service::where("owner_type","=",null)->where("owner_id","=",null)->take(rand(3,5))->get());
+
 
             // foreach($bussnise->products as $pro){
 
@@ -59,8 +82,12 @@ class DatabaseSeeder extends Seeder
             // }
 
 
-            $bussnise->followers()->attach(User::inRandomOrder()->take(rand(1,4))->pluck("id"));
+
+          //  $bussnise->followers(User::class)->attach(User::where("id","!=",$bussnise->user_id)->inRandomOrder()->take(rand(1,8))->pluck("id"));
         }
+
+
+
 
         // $user=User::create(
         //     [
@@ -91,6 +118,10 @@ class DatabaseSeeder extends Seeder
 
 
             $products=Product::all();
+
+            $user->products()->saveMany(Product::where("owner_type","=",null)->where("owner_id","=",null)->take(rand(1,4))->get());
+
+            $user->services()->saveMany(Service::where("owner_type","=",null)->where("owner_id","=",null)->take(rand(1,4))->get());
 
             foreach ($products as $product){
 

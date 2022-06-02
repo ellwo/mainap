@@ -37,9 +37,6 @@ Route::get('/country',[CountryController::class,'index']);
 Route::get('/', function () {
 
     //return
-     Bussinse::select('name','id')->whereRelation(
-        'cities','name','LIKE','%o%')->with('products:name,price,bussinse_id','cities:name')->get();
-
     return view('welcome');
 });
 

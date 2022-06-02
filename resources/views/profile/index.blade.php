@@ -1,17 +1,18 @@
-<x-dashe-layout>
-    <div class="max-w-4xl mx-auto mt-4 bg-white mb-32 dark:bg-primary-dark">
+<x-guest-layout>
+    <div x-data="{url:new URL(window.location.href)}"  class="max-w-4xl mx-auto mt-4  rounded-md mb-32 dark:bg-primary-dark">
 
         <div class="px-3 py-2 mx-auto ">
 
             <div class="sm:flex">
 
                 <div class="flex flex-col items-center gap-1 p-4 sm:w-1/3 ">
-                <a class="block w-48 h-48 bg-center bg-no-repeat bg-cover border border-gray-400 rounded-full shadow-lg" href="" style="background-image: url('{{$user->avatar}}')"></a>
+                <a class="block w-40 h-40 bg-center bg-no-repeat bg-cover border border-gray-400 rounded-full shadow-lg" href="" style="background-image: url('{{$user->avatar}}')"></a>
 
                 <div class="flex items-end">
 
-                    <x-button  class="mx-1">دردشة
-                        <x-heroicon-o-chat class="w-5 h-5"/>
+                    <x-button variant="goset"  class="mx-1 border-0">
+                      <x-heroicon-o-chat class="w-10 h-10 text-dark dark:text-light"/>
+                      <span class="text-xs"> دردشة </span>
                     </x-button>
 
   <div x-data="{ dropdownOpen: false }" class="relative">
@@ -29,7 +30,7 @@
                 </div>
                 <div class="flex items-center gap-2 text-sm">
                     <div class="mx-4 font-semibold text-center">
-                        <p class="text-black">{{$user->products()->count()+$user->services()->count()}}</p>
+                        <p class="text-black">{{$user->products_count+$user->services_count}}</p>
                         <span class="text-xs text-gray-400">العروض</span>
                     </div>
 
@@ -48,10 +49,10 @@
 
                 <div class="flex justify-between">
                     <div>
-                    <p class="pt-4 pb-4 font-serif text-lg ">{{$user->name}}
+                    <p class="pt-4 pb-4 font-serif text-lg ">{{$user->username}}
                         <br>
-
-                        <a href="{{'@'.$user->username}}"> <span class="text-sm ">{{'@'.$user->username}}</span></a>
+{{--
+                        <a href="{{'@'.$user->username}}"> <span class="text-sm ">{{'@'.$user->username}}</span></a> --}}
 
                     </p>
                     </div>
@@ -61,7 +62,12 @@
 
 
                 <div class="flex flex-col">
-                <span class="text-sm font-bold text-gray-800 dark:text-light">{{$user->email}}</span>
+                    <span class="text-sm font-bold text-gray-800 dark:text-light">{{$user->name}}</span>
+                    <span class="text-xs py-1 text-gray-800 dark:text-light">صفحة شخصية</span>
+                    <span class="text-xs py-1 flex text-info dark:text-light">
+                        <x-heroicon-o-map class="h-4 w-4"/>
+                        {{$user->city->name}}</span>
+
                 <p>
                     @php
                         echo $user->bio;
@@ -80,23 +86,33 @@
 
 
 
-            <div x-data="{selectedbus:'ps'}">
+            <div x-data="{selectedbus:'ps'}"
+            x-init="
+            selectedbus = url.searchParams.get('selected')!=null ? url.searchParams.get('selected') : 'ps';
+            "
+            >
 
             <div class="flex items-center justify-between text-sm">
-                <button @click="selectedbus='ps'" :class="{'border-b-2 border-primary':selectedbus=='ps'}" class="w-full py-2 ">
+                <button @click="selectedbus='ps';   url.searchParams.set('selected', 'ps');
+                history.pushState(null, document.title, url.toString());" :class="{'border-b-2 border-primary':selectedbus=='ps'}" class="w-full py-2 ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                       </svg>
                       العروض
                 </button>
-                <button class="w-full py-2" :class="{'border-b-2 border-primary':selectedbus=='bus'}" @click="selectedbus='bus'">
+                <button class="w-full py-2" :class="{'border-b-2 border-primary':selectedbus=='bus'}"
+                @click="selectedbus='bus';   url.searchParams.set('selected', 'bus');
+                history.pushState(null, document.title, url.toString());">
                     <svg xmlns="http://www.w3.org/2000/svg"  class="w-6 h-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                     الحسابات التسويقية لهذا المستخدم
                 </button>
             </div>
-            <div  x-show="selectedbus=='ps'">
+            <div
+            x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
+x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
+            x-show="selectedbus=='ps'">
 
                 <div x-data="{selected:'pro'}">
             <div class="flex items-center justify-between w-1/2 text-xs">
@@ -122,7 +138,10 @@
             </div> --}}
                <div class="">
 
-                <div x-show="selected=='pro'" >
+                <div
+                x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
+x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
+                x-show="selected=='pro'" >
 
                 {{-- <template x-for="(product,index) in products">
                    <div class="relative">
@@ -133,7 +152,10 @@
                 @livewire('show.products-serveces', ['username' => $user->username], key($user->id."okkkk"))
 
             </div>
-                <div x-show="selected=='serv'">
+                <div
+                x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
+x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
+                x-show="selected=='serv'">
                     @livewire('show.products-serveces', ['username' => $user->username,$proORserv='serv'], key($user->id))
 
 
@@ -142,7 +164,10 @@
                </div>
             </div>
         </div>
-        <div class="min-h-full" x-show="selectedbus=='bus'">
+        <div class="min-h-full" x-show="selectedbus=='bus'"
+        x-transition:enter="transition duration-300 ease-in-out" x-transition:enter-start="opacity-0"
+x-transition:enter-end="opacity-100" x-transition:leave="transition duration-300 ease-in-out"
+        >
             <div dir="rtl" class="grid sm:grid-cols-2 gap-2 my-3">
                 @foreach ($user->bussinses()->with("department:id,name")->withCount("followers_b")->withCount("products as products_count")->withAvg("ratings:value")->get() as $buss)
                 <div class="max-w-3xl w-full mx-auto ">
@@ -216,6 +241,9 @@
                                             </div>
 
 
+
+                                            @auth
+
                                             @if ($buss->user ==auth()->user())
                                                 <x-button>
                                                     Mange
@@ -225,21 +253,27 @@
 
                                             @if (auth()->user()->isFollowing($buss))
 
-                                           <x-button withIcon withicon variant="info">
-                                                   <x-heroicon-o-plus class="h-4 w-4"/>
+                                            <form x-data="ContactForm({{$buss->id}},'unfollow','الغاء المتابعة')" @submit.prevent="submitForm({{$buss->id}},'unfollow')">
+                                           <x-button x-show="showbutton" withIcon withicon variant="info">
+                                                   <span x-text="formMessage"></span>
 
-                                               الغاء المتابعة
-                                           </x-button>
+
+                                                </x-button>
+                                           <span x-show="!showbutton" x-text="formMessage">
+
+                                           </span>
+                                            </form>
 
                                             @else
 
-                                            <form  x-data="ContactForm({{$buss->id}})"  @submit.prevent="submitForm({{$buss->id}})">
+                                            <form  x-data="ContactForm({{$buss->id}},'follow','متابعة')"  @submit.prevent="submitForm({{$buss->id}},'follow')">
                                                 @csrf
-                                            <x-button withIcon withicon    variant="success">
-                                                    <x-heroicon-o-plus class="h-4 w-4"/>
+                                            <x-button   x-show="showbutton" withIcon withicon    variant="success">
+                                                    <span x-text="formMessage"></span>
 
-                                                متابعة
                                             </x-button>
+                                            <span class="text-xs text-success" x-show="!showbutton" x-text="formMessage"></span>
+
                                         </form>
 
 
@@ -247,6 +281,9 @@
 
 
                                             @endif
+
+                                            @endauth
+
 
                                         </div>
                                     </div>
@@ -279,11 +316,13 @@
 
 const FORM_URL="{{route('b.follow')}}";
 
-function ContactForm(buss_id) {
+function ContactForm(buss_id ,typef,message) {
       return {
 
-        formMessage: "",
-        submitForm(buss_id) {
+        showbutton:true,
+        formMessage: message,
+        button_message:"متابعة",
+        submitForm(buss_id,typef) {
             fetch(FORM_URL, {
             method: "POST",
             headers: {
@@ -292,12 +331,12 @@ function ContactForm(buss_id) {
               'X-CSRF-TOKEN': '{{csrf_token()}}'
 
             },
-            body: JSON.stringify(buss_id),
+            body: JSON.stringify({'buss_id':buss_id,"typef":typef}),
 
 
           }).then(response=>{
               if(!response.ok){
-              this.formMessage="something is wrong";
+              this.formMessage="اعدالمحاولة";
               return null;
               }
               return response.json()
@@ -306,6 +345,7 @@ function ContactForm(buss_id) {
 
               if(data.status==true){
                 this.formMessage=data.message;
+                this.showbutton=false;
 
               }
               else{
@@ -320,7 +360,7 @@ function ContactForm(buss_id) {
 
             }).catch((e) => {
                 console.log(e);
-              this.formMessage = "Something went wrong.";
+              this.formMessage = "اعد المحاولة";
             });
 
         }
@@ -344,4 +384,4 @@ function ContactForm(buss_id) {
 </script>
 
       </x-slot>
-</x-dashe-layout>
+</x-guest-layout>

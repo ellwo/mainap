@@ -16,8 +16,8 @@ class CityProductTable extends Migration
         Schema::create('city_product', function (Blueprint $table) {
             //
 
-            $table->foreignId('city_id')->constrained();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('city_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

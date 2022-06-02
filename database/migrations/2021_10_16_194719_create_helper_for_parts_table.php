@@ -18,7 +18,7 @@ class CreateHelperForPartsTable extends Migration
             $table->text('titel');
             $table->text('disc')->nullable();
             $table->foreignId('part_id')->nullable()->constrained('parts')
-            ->cascadeOnUpdate()->nullOnDelete();
+            ->nullOnDelete();
             $table->timestamps();
         });
     }

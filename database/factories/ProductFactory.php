@@ -31,9 +31,8 @@ class ProductFactory extends Factory
             'note'=>$this->notes(),
             'img'=>$this->faker->imageUrl(250,250,"shopping"),
             'price'=>rand(260,4890),
-            'bussinse_id'=>Bussinse::inRandomOrder()->pluck('id')->first(),
-            'user_id'=>User::inRandomOrder()->pluck('id')->first(),
-            "department_id"=>Department::inRandomOrder()->pluck("id")->first()
+            "department_id"=>Department::inRandomOrder()->pluck("id")->first(),
+            'imgs'=>$this->imgs()
 
 
         ];
@@ -59,6 +58,18 @@ class ProductFactory extends Factory
         }
 
         return  $colors;
-
     }
+
+    public function  imgs()
+    {
+        $colors=[];
+
+        for($i=0; $i<rand(1,5); $i++){
+            $colors[]=$this->faker->imageUrl;
+        }
+
+        return  $colors;
+    }
+
+
 }

@@ -22,9 +22,12 @@ class CreateProductsTable extends Migration
             $table->json('colors')->nullable();
             $table->text("img")->nullable();
             $table->json("imgs")->nullable();
-            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
+            $table->text("owner_type")->nullable();
+            $table->bigInteger("owner_id")->nullable();
+            $table->year("year_created")->default(date('Y'));
+            $table->integer("status")->default(1);
+
             $table->foreignId("department_id")->nullable()->constrained("departments")->nullOnDelete();
-            $table->foreignId('bussinse_id')->nullable()->constrained('bussinses')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

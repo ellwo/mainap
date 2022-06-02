@@ -16,7 +16,7 @@ class CreateMarktsTable extends Migration
         Schema::create('markts', function (Blueprint $table) {
             $table->id();
             $table->text("name");
-            $table->foreignId("city_id")->nullable()->constrained("cities")->cascadeOnDelete();
+            $table->foreignId("city_id")->nullable()->constrained("cities")->nullOnDelete();
             $table->text("land_map")->nullable();
             $table->text("long_map")->nullable();
             $table->timestamps();

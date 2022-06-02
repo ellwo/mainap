@@ -25,11 +25,14 @@ class Product extends Model
         "colors",
         "note",
         "img",
-        "imgs"
+        "imgs",
+        "year_created",
+        "status"
     ];
     protected $casts =[
         'colors'=>'array',
-        'note'=>'array'
+        'note'=>'array',
+        'imgs'=>'array'
     ];
 
 
@@ -61,6 +64,13 @@ class Product extends Model
         }
        // $dta["data"]=$data;
         return $data;
+    }
+
+    public function owner()
+    {
+
+        return $this->morphTo();
+        # code...
     }
     public function notes(){
 

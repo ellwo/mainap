@@ -19,8 +19,9 @@ class ProfileController extends Controller
     {
         //
 
+
         $user=auth()->user();
-        // $user=User::where("username","=",$request["username"]);
+         $user=User::where("id","=",$user->id)->withCount("products as products_count")->withCount("services as services_count")->with("city:id,name")->first();
 
         return view("profile.index",compact("user"));
     }
@@ -97,8 +98,7 @@ class ProfileController extends Controller
     public function show(User $user,$username)
     {
 
-        $user=User::where("username","=",$username)->first();
-
+        $user=User::where("id","=",$user->id)->withCount("products as products_count")->withCount("services_count")->with("city:id,name")->first();
         if($user!=null)
         return view("profile.index",compact("user"));
         else

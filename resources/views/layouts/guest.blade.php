@@ -21,21 +21,51 @@
     </style>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    @livewireStyles
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body >
-    <div class="font-sans antialiased" >
-        <div class="flex flex-col min-h-screen text-gray-900 bg-gray-100 dark:bg-dark-bg dark:text-gray-200">
-            {{ $slot }}
+<body class="antialiased" >
 
+
+
+
+    <div x-data="setup()" @resize.window="handleWindowResize" x-init="$refs.loading.classList.add('hidden');
+    setColors('mycolor'); isSidebarOpen=false" :class="{ 'dark': isDark}">
+
+
+    <div   class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
+            <!-- Loading screen -->
+
+            <div x-ref="loading"
+                class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-primary-darker">
+                Loading.....
+            </div>
+
+
+                        <!-- Sidebar -->
+
+
+            <div  class="flex flex-col flex-1 min-h-full "
+            style="transition-property: margin; transition-duration: 150ms;"
+            >
+            <x-navbar/>
+
+                <main class="flex-1 px-4 sm:px-6">
+
+                    {{$slot}}
+
+                </main>
+
+
+
+            </div>
         </div>
-
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+    @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
 
     @isset($script)
         {{$script}}

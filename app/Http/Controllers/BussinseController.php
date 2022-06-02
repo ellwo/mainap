@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bussinse;
+use App\Models\Product;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class BussinseController extends Controller
@@ -55,20 +57,55 @@ class BussinseController extends Controller
         if($request->has("buss_id")){
             $user=User::find(auth()->user()->id);
 
-            $bussinse=Bussinse::find("buss_id");
+            $bussinse=Bussinse::find($request["buss_id"]);
 
             if($user!=null){
-            $user->follow($bussinse);
 
+
+
+             if($request["typef"]=="follow"){
+           if($user->follow($bussinse))
             return $data=[
                 "status"=>true,
                 'message'=>'تم المتابعة'
             ];
+            else{
+
+            return $data=[
+                "status"=>false,
+                'message'=>'فشل'
+            ];
+            }
+
+        }
+
+        else{
+
+            if($user->unfollow($bussinse))
+            return $data=[
+                "status"=>true,
+                'message'=>'تم الغاء المتابعة'
+            ];
+            else{
+
+            return $data=[
+                "status"=>false,
+                'message'=>'فشل'
+            ];
+            }
+
+
+
+        }
+
+
+
+
         }
         else{
             return $data=[
                 "status"=>false,
-                'message'=>'فشل'
+                'message'=>'un auth فشل'
             ];
         }
 
@@ -76,7 +113,7 @@ class BussinseController extends Controller
         else{
             return $data=[
                 "status"=>false,
-                'message'=>'فشل'
+                'message'=>'فشل b is not set'
             ];
         }
 
@@ -88,8 +125,13 @@ class BussinseController extends Controller
     public function show($username)
     {
 
-        $b=Bussinse::where("username","=",$username)->first();
-        return $b;
+       // $b=Bussinse::where("username","=",$username)->first();
+
+     //   $b->products()->saveMany(Product::whereDoesntHave('owner')->inRandomOrder()->take(rand(1,4))->get());
+
+       echo Product::where("owner_type","=",null)->where("owner_id","=",null)->get();
+    return;
+  //      return dd($b->products()->count());
         //
       //  $bussinse=Bussinse::find(request('id'));
 

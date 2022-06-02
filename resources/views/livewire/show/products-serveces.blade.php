@@ -2,7 +2,7 @@
 
 
     {{$products->links()}}
-    <div class="grid grid-cols-3 gap-2 my-3">
+    <div class="grid sm:grid-cols-3 gap-2 my-3">
 
 
     @foreach ($products as $product)

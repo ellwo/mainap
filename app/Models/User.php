@@ -133,11 +133,12 @@ class User extends Authenticatable implements Blocking,Follower
     }
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->morphMany(Product::class,'owner');
+
     }
     public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->morphMany(Service::class,'owner');
     }
 
     public function country()

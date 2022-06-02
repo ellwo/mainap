@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bussinse;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BussinseController extends Controller
@@ -45,11 +46,69 @@ class BussinseController extends Controller
      * @param  \App\Models\Bussinse  $bussinse
      * @return \Illuminate\Http\Response
      */
-    public function show(Bussinse $bussinse)
+
+
+
+     public function follow_bussinse(Request $request)
+     {
+
+        if($request->has("buss_id")){
+            $user=User::find(auth()->user()->id);
+
+            $bussinse=Bussinse::find("buss_id");
+
+            if($user!=null){
+            $user->follow($bussinse);
+
+            return $data=[
+                "status"=>true,
+                'message'=>'تم المتابعة'
+            ];
+        }
+        else{
+            return $data=[
+                "status"=>false,
+                'message'=>'فشل'
+            ];
+        }
+
+        }
+        else{
+            return $data=[
+                "status"=>false,
+                'message'=>'فشل'
+            ];
+        }
+
+
+         # code...
+     }
+
+
+    public function show($username)
     {
+
+        $b=Bussinse::where("username","=",$username)->first();
+        return $b;
         //
       //  $bussinse=Bussinse::find(request('id'));
-        return response($bussinse,200);
+
+
+
+    //   dd($b->withAvg("products:ratings:value")->get());
+    //   return;
+    //   $sum=0;
+    //   $count=0;
+    //   foreach($b->products()->withAvg("ratings:value")->get() as $prod){
+    //     $sum+=$prod->ratings_value_avg;
+    //     $count++;
+    //   }
+
+
+    //   if($count!=0)
+    //     return (int)$sum/$count;
+    //     else
+    //     return 0;
     }
 
     /**
@@ -60,7 +119,7 @@ class BussinseController extends Controller
      */
     public function edit(Bussinse $bussinse)
     {
-        //
+
     }
 
     /**

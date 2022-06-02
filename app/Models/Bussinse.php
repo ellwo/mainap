@@ -48,6 +48,29 @@ class Bussinse extends Model implements Blocking,Followable
 
 
 
+   public function followers_b(){
+
+    return $this->followers(User::class);
+   }
+
+
+    public function ratingsAvg_()
+    {
+
+        $sum=0;
+        $count=0;
+        foreach($this->products()->withAvg("ratings:value")->get() as $prod){
+          $sum+=$prod->ratings_value_avg;
+          $count++;
+        }
+
+
+        if($count!=0)
+          return (int)$sum/$count;
+          else
+          return 0;
+
+    }
     public function chroms()
     {
         //return $this->morphToMany(ChatRoom::class,"to")->;

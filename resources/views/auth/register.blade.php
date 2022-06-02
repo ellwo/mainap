@@ -105,15 +105,14 @@
                         <x-slot name="icon">
                             <x-heroicon-o-mail aria-hidden="true" class="w-5 h-5" />
                         </x-slot>
-                        <x-input  withicon id="email" class="block
-                       w-full" type="email" name="email"
+                        <x-input  withicon id="email" class="block w-full" type="email" name="email"
                             :value="old('email')" required placeholder="{{ __('Email@example.com') }}" />
                     </x-input-with-icon-wrapper>
 
                     @error("email")
 
-                    <hr class="text-danger bg-danger border-2 border-danger"/>
-                    <span class="text-danger text-xs ">{{$message}}</span>
+                    <hr class="border-2 text-danger bg-danger border-danger"/>
+                    <span class="text-xs text-danger ">{{$message}}</span>
                     @enderror
                 </div>
                   <!-- Password -->
@@ -136,8 +135,8 @@
 
                         @error("password")
 
-                    <hr class="text-danger bg-danger border-2 border-danger"/>
-                    <span class="text-danger text-xs ">{{$message}}</span>
+                    <hr class="border-2 text-danger bg-danger border-danger"/>
+                    <span class="text-xs text-danger ">{{$message}}</span>
                     @enderror
 
                 </div>
@@ -161,8 +160,8 @@
                         </x-input-with-icon-wrapper>
                     @error("password_confirmation")
 
-                    <hr class="text-danger bg-danger border-2 border-danger"/>
-                    <span class="text-danger text-xs ">{{$message}}</span>
+                    <hr class="border-2 text-danger bg-danger border-danger"/>
+                    <span class="text-xs text-danger ">{{$message}}</span>
                     @enderror
 
                 </div>
@@ -235,7 +234,7 @@
 
               <!-- Login link -->
               <div class="text-sm text-gray-600 dark:text-gray-400">
-                لديك حساب بالفعل ؟ <a href="login.html" class="text-blue-600 hover:underline">تسجيل دخول </a>
+                لديك حساب بالفعل ؟ <a href="{{route('login')}}" class="text-blue-600 hover:underline">تسجيل دخول </a>
               </div>
             </div>
           </main>

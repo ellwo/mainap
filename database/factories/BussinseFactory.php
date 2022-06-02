@@ -31,6 +31,7 @@ class BussinseFactory extends Factory
             'note'=>$this->faker->paragraph,
             'username'=>$this->faker->userName,
             'address'=>$this->address(),
+            'avatar'=>$this->faker->imageUrl,
             'department_id'=>Department::inRandomOrder()->pluck('id')->first(),
             'user_id'=>User::inRandomOrder()->pluck('id')->first(),
 

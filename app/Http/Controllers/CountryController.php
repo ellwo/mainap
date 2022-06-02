@@ -18,6 +18,22 @@ class CountryController extends Controller
         $coun=[];//Country::with('bussinses.user','bussinses.cities','bussinses.parts')->paginate(2);
 
 
+        $country=Country::all();
+
+        return response($country);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         $user=auth()->user();
 

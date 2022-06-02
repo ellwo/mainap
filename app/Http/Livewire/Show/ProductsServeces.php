@@ -12,8 +12,17 @@ class ProductsServeces extends Component
 
     use WithPagination;
     public $proORserv='pro';
+    protected $listeners = [
+        'load-more-product' => 'more_product',
+        'load-more-service'=>'more_service'
+    ];
 
     public $username;
+    public $procount=5;
+    public $servcount=5;
+
+    public $servtotal=0;
+    public $prototal=0;
 
 
     public function mount($username,$proORserv="pro"){
@@ -31,15 +40,20 @@ class ProductsServeces extends Component
             if($this->proORserv=="pro")
             {
 
-                $products=$user->products()->paginate(1);
+                $products=$user->products()->latest()->paginate($this->procount);
 
-        return view('livewire.show.products-serveces',compact('products'));
+
+               $this->prototal= $products->total();
+               $includescript=true;
+               $this->emit('userStore');
+        return view('livewire.show.products-serveces',compact('products','includescript'));
             }
 
             else
             {
-                $products=$user->services()->paginate(1);
-
+                $products=$user->services()->paginate($this->servcount);
+                $this->servtotal=$products->total();
+                $this->emit('userStore');
                 return view('livewire.show.products-serveces',compact('products'));
 
             }
@@ -51,6 +65,20 @@ class ProductsServeces extends Component
         // $products=
 
         return view('livewire.show.products-serveces');
+    }
+
+
+    public function more_product()
+    {
+        if($this->prototal > $this->procount)
+        $this->procount+=5;
+
+    }
+
+    public function more_service()
+    {
+        if($this->servtotal > $this->servcount)
+        $this->servcount+=5;
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\BussinseController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Bussinse;
@@ -47,6 +47,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post("/b",[BussinseController::class,'follow_bussinse'])->name("b.follow");
+Route::get("/b/{username}",[BussinseController::class,'show'])->name("b.show");
+Route::resource('/b',BussinseController::class)->only(['index','update','edit'])->name('index','b');
+
+
+
+
+
+
+
+
+
+
+
 // useless routes
 // Just to demo sidebar dropdown links active states.
 Route::get('/buttons/text', function () {
@@ -58,9 +72,6 @@ Route::get('/buttons/icon', function () {
 })->middleware(['auth'])->name('buttons.icon');
 
 Route::get('/buttons/text-icon', function () {
-    return view('buttons-showcase.text-icon');
-})->middleware(['auth'])->name('buttons.text-icon');
-Route::get('/buttons/t', function () {
     return view('buttons-showcase.text-icon');
 })->middleware(['auth'])->name('buttons.text-icon');
 

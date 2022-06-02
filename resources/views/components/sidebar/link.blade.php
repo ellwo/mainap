@@ -20,6 +20,10 @@
             {{ $title }}
         </span>
 
+        @if (isset($righticon))
+            {{$righticon}}
+        @endif
+
         <span  x-show="isSidebarOpen || isSidebarHovered" aria-hidden="true" class="relative block ml-auto w-6 h-6">
             <span :class="open ? '-rotate-45' : 'rotate-45'" class="absolute right-[9px] bg-gray-400 mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200"></span>
             <span :class="open ? 'rotate-45' : '-rotate-45'" class="absolute left-[9px] bg-gray-400 mt-[-5px] h-2 w-[2px] top-1/2 transition-all duration-200"></span>
@@ -36,5 +40,9 @@
         <span class="text-base font-medium" x-show="isSidebarOpen || isSidebarHovered">
             {{ $title }}
         </span>
+
+        @if (isset($righticon))
+            {{$righticon}}
+        @endif
     </a>
 @endif

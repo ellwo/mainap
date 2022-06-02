@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator ;
 use Illuminate\Support\Str;
 class ProfileController extends Controller
 {
@@ -12,12 +15,56 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+
         $user=auth()->user();
+        // $user=User::where("username","=",$request["username"]);
+
         return view("profile.index",compact("user"));
     }
+
+
+
+
+
+    public function update_password(Request $request)
+    {
+        # code...
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        if($validator->fails()){
+
+
+            return $data=[
+                'status'=>false,
+                'message'=>$validator->errors(),
+            ];
+
+        }
+        else{
+
+
+           $user= Auth::user();
+           $user->password=Hash::make($request["password"]);
+           $user->save();
+
+
+              return $data=[
+                'status'=>true,
+                'message'=>"تم بنجاح",
+            ];
+
+        }
+
+
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,9 +94,16 @@ class ProfileController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user,$username)
     {
-        return "show";
+
+        $user=User::where("username","=",$username)->first();
+
+        if($user!=null)
+        return view("profile.index",compact("user"));
+        else
+        return abort(404);
+
         //
     }
 

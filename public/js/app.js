@@ -5454,6 +5454,34 @@ document.addEventListener("alpine:init", function () {
 });
 document.addEventListener("alpine:init", function () {
   alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data("setup", function () {
+    var lastScrollTop = 0;
+
+    var init = function init() {
+      var _this2 = this;
+
+      window.addEventListener("scroll", function () {
+        var st = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (st > lastScrollTop) {
+          // downscroll
+          _this2.scrollingDown = true;
+          _this2.scrollingUp = false;
+        } else {
+          // upscroll
+          _this2.scrollingDown = false;
+          _this2.scrollingUp = true;
+
+          if (st == 0) {
+            //  reset
+            _this2.scrollingDown = false;
+            _this2.scrollingUp = false;
+          }
+        }
+
+        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+      });
+    };
+
     var getTheme = function getTheme() {
       if (window.localStorage.getItem('dark')) {
         return JSON.parse(window.localStorage.getItem('dark'));
@@ -5525,6 +5553,7 @@ document.addEventListener("alpine:init", function () {
     };
 
     return {
+      init: init,
       loading: true,
       isDark: getTheme(),
       toggleTheme: function toggleTheme() {
@@ -5547,52 +5576,70 @@ document.addEventListener("alpine:init", function () {
       },
       isSettingsPanelOpen: false,
       openSettingsPanel: function openSettingsPanel() {
-        var _this2 = this;
+        var _this3 = this;
 
         this.isSettingsPanelOpen = true;
         this.$nextTick(function () {
-          _this2.$refs.settingsPanel.focus();
+          _this3.$refs.settingsPanel.focus();
         });
       },
       isNotificationsPanelOpen: false,
       openNotificationsPanel: function openNotificationsPanel() {
-        var _this3 = this;
+        var _this4 = this;
 
         this.isNotificationsPanelOpen = true;
         this.$nextTick(function () {
-          _this3.$refs.notificationsPanel.focus();
+          _this4.$refs.notificationsPanel.focus();
         });
       },
       isSearchPanelOpen: false,
       openSearchPanel: function openSearchPanel() {
-        var _this4 = this;
+        var _this5 = this;
 
         this.isSearchPanelOpen = true;
         this.$nextTick(function () {
-          _this4.$refs.searchInput.focus();
+          _this5.$refs.searchInput.focus();
         });
       },
       isMobileSubMenuOpen: false,
       openMobileSubMenu: function openMobileSubMenu() {
-        var _this5 = this;
+        var _this6 = this;
 
         this.isMobileSubMenuOpen = true;
         this.$nextTick(function () {
-          _this5.$refs.mobileSubMenu.focus();
+          _this6.$refs.mobileSubMenu.focus();
         });
       },
       isMobileMainMenuOpen: false,
       openMobileMainMenu: function openMobileMainMenu() {
-        var _this6 = this;
+        var _this7 = this;
 
         this.isMobileMainMenuOpen = true;
         this.$nextTick(function () {
-          _this6.$refs.mobileMainMenu.focus();
+          _this7.$refs.mobileMainMenu.focus();
         });
       },
       updateBarChart: updateBarChart,
       updateDoughnutChart: updateDoughnutChart,
-      updateLineChart: updateLineChart
+      updateLineChart: updateLineChart,
+      isSidebarOpen: window.innerWidth > 1024,
+      isSidebarHovered: false,
+      handleSidebarHover: function handleSidebarHover(value) {
+        if (window.innerWidth < 1024) {
+          return;
+        }
+
+        this.isSidebarHovered = value;
+      },
+      handleWindowResize: function handleWindowResize() {
+        if (window.innerWidth <= 1024) {
+          this.isSidebarOpen = false;
+        } else {
+          this.isSidebarOpen = true;
+        }
+      },
+      scrollingDown: false,
+      scrollingUp: false
     };
   });
 });

@@ -6,14 +6,13 @@
     </ul>
 </div>
 
-<header class="  sticky top-0 mb-36 sm:mb-0 z-10 transition-transform duration-500
-"
+<header class="sticky top-0 z-10 transition-transform duration-500 mb-20 sm:mb-0"
 :class="{
     '-translate-y-full': scrollingDown,
     'translate-y-0': scrollingUp,
 }"
 >
-    <div class="flex bg-white dark:bg-darker items-center justify-between p-2 border-b dark:border-primary-darker">
+    <div class="flex items-center justify-between p-2 bg-white border-b dark:bg-darker dark:border-primary-darker">
         <!-- Mobile menu button -->
         <button @click="isSidebarOpen = !isSidebarOpen"
          {{-- @click="isMobileMainMenuOpen = !isMobileMainMenuOpen" --}}
@@ -107,7 +106,7 @@
                     type="button" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'"
                     class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100">
                     <span class="sr-only">User menu</span>
-                    <img class="w-10 h-10 rounded-full" src="{{asset('build/images/avatagr.jpg')}}"
+                    <img class="w-10 h-10 rounded-full" src="{{auth()->user()->avatar}}"
                         alt="Img" />
                 </button>
 
@@ -459,7 +458,7 @@
         </nav>
     </div>
 </header>
-<div class="fixed inset-x-0  z-10 bottom-0 flex items-center justify-between px-4 py-4 sm:px-6 transition-transform duration-500 bg-white md:hidden dark:bg-dark"
+<div class="fixed inset-x-0 bottom-0 z-10 flex items-center sm:hidden max-w-3xl py-4 mx-auto transition-transform duration-500 bg-primary-light dark:bg-dark"
     :class="{
         'translate-y-full': scrollingDown,
         'translate-y-0': scrollingUp,
@@ -474,7 +473,7 @@
             x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
             x-transition:leave-start="translate-y-0 opacity-100"
             x-transition:leave-end="-translate-y-full opacity-0" x-show="true"
-            class="absolute flex items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker bottom-0 inset-x-4 md:hidden"
+            class="absolute flex items-center w-full p-4 rounded-md shadow-lg bg-primary-50 dark:bg-darker bottom-1 "
             aria-label="Secondary">
             <div class="space-x-2">
                 <!-- Toggle dark theme button -->

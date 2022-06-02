@@ -26,15 +26,18 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class="antialiased" x-data="mainState">
+<body class="antialiased" >
 
     <div x-data="setup()" @resize.window="handleWindowResize" x-init="$refs.loading.classList.add('hidden');
-    setColors(color);" :class="{ 'dark': isDark}">
+    setColors('mycolor'); isSidebarOpen=false" :class="{ 'dark': isDark}">
 
 
-    <div   class=" min-h-screen  text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
+    <div   class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
             <!-- Loading screen -->
+
+            @if(!isset($withsidebar))
             <x-sidebar.sidebar/>
+            @endif
 
             <div x-ref="loading"
                 class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-primary-darker">
@@ -48,7 +51,7 @@
             <div :class="{
                 'lg:ml-64': isSidebarOpen,
                 'md:ml-16': !isSidebarOpen
-            }" class="flex flex-1 flex-col  min-h-full  "
+            }" class="flex flex-col flex-1 min-h-full "
             style="transition-property: margin; transition-duration: 150ms;"
             >
 
@@ -57,7 +60,7 @@
                 <x-dashborade.navbar/>
 
 
-                <main class="px-4 sm:px-6 flex-1">
+                <main class="flex-1 px-4 sm:px-6">
 
                     {{$slot}}
 

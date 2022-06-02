@@ -22,17 +22,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    //    \App\Models\Country::factory(1)->create();
-    //    \App\Models\City::factory(10)->create();
-    //    \App\Models\User::factory(30)->create();
+       \App\Models\Country::factory(1)->create();
+       \App\Models\City::factory(10)->create();
+       \App\Models\User::factory(30)->create();
 
 
-    //    \App\Models\Department::factory(20)->create();
-    //     \App\Models\Part::factory(120)->create();
-    //     \App\Models\Bussinse::factory(30)->create();
+       \App\Models\Department::factory(20)->create();
+        \App\Models\Part::factory(120)->create();
+        \App\Models\Bussinse::factory(30)->create();
         \App\Models\Product::factory(50)->create();
         \App\Models\Service::factory(50)->create();
-        // \App\Models\Part::factory(80)->create();
+         \App\Models\Part::factory(80)->create();
 
         $bussinses=Bussinse::all();
 
@@ -50,14 +50,14 @@ class DatabaseSeeder extends Seeder
 
 
         foreach ($bussinses as $bussnise){
-            // $contr=Country::inRandomOrder()->first();
-            // $cities=$contr->cities->take(rand(1,4))->pluck("id");
+            $contr=Country::inRandomOrder()->first();
+            $cities=$contr->cities->take(rand(1,4))->pluck("id");
 
-            // $bussnise->cities()->attach($cities);
+            $bussnise->cities()->attach($cities);
 
 
-            // $parts=$bussnise->department->parts()->inRandomOrder()->take(rand(2,6))->pluck('id');
-            // $bussnise->parts()->attach($parts);
+            $parts=$bussnise->department->parts()->inRandomOrder()->take(rand(2,6))->pluck('id');
+            $bussnise->parts()->attach($parts);
 
             if($bussnise->department->type==1)
             $bussnise->products()->saveMany(Product::where("owner_type","=",null)->where("owner_id","=",null)->take(rand(4,8))->get());
@@ -65,49 +65,49 @@ class DatabaseSeeder extends Seeder
             $bussnise->services()->saveMany(Service::where("owner_type","=",null)->where("owner_id","=",null)->take(rand(3,5))->get());
 
 
-            // foreach($bussnise->products as $pro){
+            foreach($bussnise->products as $pro){
 
-            //     $pro->parts()->attach($bussnise->parts()->inRandomOrder()->take(rand(1,3))->pluck('id'));
-            //     $pro->cities()->attach($bussnise->cities()->inRandomOrder()->take(rand(1,3))->pluck('id'));
-
-
-
-            // }
-
-
-            // foreach($bussnise->services as $pro){
-
-            //     $pro->parts()->attach($bussnise->parts()->inRandomOrder()->take(rand(1,3))->pluck('id'));
-            //     $pro->cities()->attach($bussnise->cities()->inRandomOrder()->take(rand(1,3))->pluck('id'));
-            // }
+                $pro->parts()->attach($bussnise->parts()->inRandomOrder()->take(rand(1,3))->pluck('id'));
+                $pro->cities()->attach($bussnise->cities()->inRandomOrder()->take(rand(1,3))->pluck('id'));
 
 
 
-          //  $bussnise->followers(User::class)->attach(User::where("id","!=",$bussnise->user_id)->inRandomOrder()->take(rand(1,8))->pluck("id"));
+            }
+
+
+            foreach($bussnise->services as $pro){
+
+                $pro->parts()->attach($bussnise->parts()->inRandomOrder()->take(rand(1,3))->pluck('id'));
+                $pro->cities()->attach($bussnise->cities()->inRandomOrder()->take(rand(1,3))->pluck('id'));
+            }
+
+
+
+           $bussnise->followers(User::class)->attach(User::where("id","!=",$bussnise->user_id)->inRandomOrder()->take(rand(1,8))->pluck("id"));
         }
 
 
 
 
-        // $user=User::create(
-        //     [
-        //         'name'=>'admin',
-        //         "email"=>"admin@me.com",
-        //         "password"=>Hash::make("admin"),
-        //         "gender"=>1,
-        //         "city_id"=>2,
-        //         "username"=>"mo",
-        //         "phone"=>"775212843"
-        //     ]
-        // );
+        $user=User::create(
+            [
+                'name'=>'admin',
+                "email"=>"admin@me.com",
+                "password"=>Hash::make("admin"),
+                "gender"=>1,
+                "city_id"=>2,
+                "username"=>"mo",
+                "phone"=>"775212843"
+            ]
+        );
 
-        // Role::create([
-        //     'name'=>'admin'
-        // ]);
+        Role::create([
+            'name'=>'admin'
+        ]);
 
-        // Role::create([
-        //     'name'=>'normal'
-        // ]);
+        Role::create([
+            'name'=>'normal'
+        ]);
 
 
 

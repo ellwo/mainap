@@ -11,7 +11,10 @@ module.exports = {
         "./resources/views/**/*.blade.php",
         "./resources/views/**/**/*.blade.php",
         "./resources/js/**/*.js",
+<<<<<<< HEAD
         "./resources/js/**/*.vue",
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     ],
 
     theme: {

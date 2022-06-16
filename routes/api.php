@@ -3,8 +3,11 @@
 use App\Http\Controllers\Api\Auth\AuthAPIController;
 use App\Http\Controllers\Api\Auth\ResetPasswordAPIController;
 use App\Http\Controllers\Api\BussinseController;
+<<<<<<< HEAD
 use App\Http\Controllers\Api\Chat\ChatController;
 use App\Http\Controllers\UploadeController;
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -81,10 +84,13 @@ Route::get('/token', function (Request $request) {
 
     return response(request());
 });
+<<<<<<< HEAD
 Route::post("/chatroom_message",[ChatController::class,'chatroom_messages'])->name("chatroom_message");
 Route::post("/user_chat",[ChatController::class,'user_chat'])->name("user_chat");
 Route::apiResource('chat',ChatController::class);
 
 Route::post("/delete.uploade",[UploadeController::class,'delete'])->name("delete.uploade.api");
 
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 

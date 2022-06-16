@@ -19,10 +19,14 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements Blocking,Follower
 {
     use HasApiTokens, HasFactory, Notifiable,CanRate,BelongsToThrough,
+<<<<<<< HEAD
     CanConvristion,
     Block
     ,HasRoles
     ,CanFollow;
+=======
+    CanConvristion,Block,HasRoles,CanFollow;
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
     /**
      * The attributes that are mass assignable.

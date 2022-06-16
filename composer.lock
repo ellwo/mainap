@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "dcdd30e09729f807435375ecf16819fa",
+=======
+    "content-hash": "13e2735ae7e87110eb82dc817518823f",
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     "packages": [
         {
             "name": "alexmg86/laravel-sub-query",
@@ -4069,6 +4073,7 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "paragonie/sodium_compat",
             "version": "v1.17.1",
             "source": {
@@ -4155,6 +4160,8 @@
             "time": "2022-03-23T19:32:04+00:00"
         },
         {
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
             "name": "php-http/message-factory",
             "version": "v1.0.2",
             "source": {
@@ -4891,6 +4898,7 @@
             "time": "2021-10-10T13:37:39+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "pusher/pusher-php-server",
             "version": "7.0.2",
             "source": {
@@ -4952,6 +4960,8 @@
             "time": "2021-12-07T13:09:00+00:00"
         },
         {
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {

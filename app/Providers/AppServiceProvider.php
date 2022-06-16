@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+<<<<<<< HEAD
 use App\Models\Department;
 use Illuminate\Support\Facades\Cache;
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(190);
+<<<<<<< HEAD
         if (env('APP_ENV') == 'production')
         \URL::forceScheme('https');
 
@@ -39,5 +43,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->share('catgraies',$catgraies);
 
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     }
 }

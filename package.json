@@ -20,6 +20,7 @@
         "perfect-scrollbar": "^1.5.2",
         "postcss": "^8.3.9",
         "postcss-import": "^12.0.1",
+<<<<<<< HEAD
         "tailwindcss": "^2.2.16",
         "vue-loader": "^16.2.0"
     },
@@ -29,5 +30,8 @@
         "vue": "^3.2.36",
         "vue-loader": "^16.8.1",
         "vue-router": "^4.0.11"
+=======
+        "tailwindcss": "^2.2.16"
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     }
 }

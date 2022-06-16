@@ -21,8 +21,11 @@ Broadcast::channel("userchatrooms.{id}",function($id){
     return true;
 
 });
+<<<<<<< HEAD
 
 Broadcast::channel("chatroom.{id}",function(){
     return true;
 
 });
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1

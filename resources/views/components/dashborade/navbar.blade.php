@@ -6,7 +6,11 @@
     </ul>
 </div>
 
+<<<<<<< HEAD
 <header class="sticky top-0 z-10 transition-transform duration-500 sm:mb-0"
+=======
+<header class="sticky top-0 z-10 transition-transform duration-500 mb-20 sm:mb-0"
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 :class="{
     '-translate-y-full': scrollingDown,
     'translate-y-0': scrollingUp,
@@ -100,6 +104,7 @@
                 </svg>
             </button>
 
+<<<<<<< HEAD
             <a href="{{url('chat?type=user')}}"
             class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker">
             <span class="sr-only">Open settings panel</span>
@@ -112,6 +117,8 @@
             </svg>
         </a>
 
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
             <!-- User avatar button -->
             <div class="relative" x-data="{ open: false }">
                 <button @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
@@ -470,9 +477,13 @@
         </nav>
     </div>
 </header>
+<<<<<<< HEAD
 
 {{--
 <div class="fixed inset-x-0 bottom-0 z-10 flex items-center max-w-3xl py-4 mx-auto transition-transform duration-500 sm:hidden bg-primary-light dark:bg-dark"
+=======
+<div class="fixed inset-x-0 bottom-0 z-10 flex items-center sm:hidden max-w-3xl py-4 mx-auto transition-transform duration-500 bg-primary-light dark:bg-dark"
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     :class="{
         'translate-y-full': scrollingDown,
         'translate-y-0': scrollingUp,
@@ -566,5 +577,24 @@
             <x-dashborade.usersubmenu totop="{{false}}"/>
         </div>
 
+<<<<<<< HEAD
 
 </div> --}}
+=======
+{{--
+    <x-button type="button" iconOnly variant="secondary" srText="Search">
+        <x-heroicon-o-search aria-hidden="true" class="w-6 h-6" />
+    </x-button>
+
+    <a href="{{ route('dashboard') }}">
+        <x-application-logo aria-hidden="true" class="w-10 h-10" />
+        <span class="sr-only">K UI</span>
+    </a>
+
+    <x-button type="button" iconOnly variant="secondary" srText="Open main menu"
+        @click="isSidebarOpen = !isSidebarOpen">
+        <x-heroicon-o-menu x-show="!isSidebarOpen" aria-hidden="true" class="w-6 h-6" />
+        <x-heroicon-o-x x-show="isSidebarOpen" aria-hidden="true" class="w-6 h-6" />
+    </x-button> --}}
+</div>
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1

@@ -171,7 +171,11 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+<<<<<<< HEAD
         App\Providers\BroadcastServiceProvider::class,
+=======
+        // App\Providers\BroadcastServiceProvider::class,
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Nagy\LaravelRating\LaravelRatingServiceProvider::class,

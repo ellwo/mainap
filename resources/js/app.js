@@ -1,8 +1,13 @@
 require("./bootstrap");
+<<<<<<< HEAD
+=======
+
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 import Alpine from "alpinejs";
 import collapse from "@alpinejs/collapse";
 import PerfectScrollbar from "perfect-scrollbar";
 
+<<<<<<< HEAD
 import { createApp } from "vue";
 import router from './router';
 import ChatIndex from './components/chat/ChatIndex.vue';
@@ -15,6 +20,80 @@ createApp({
 window.PerfectScrollbar = PerfectScrollbar;
 
 document.addEventListener("alpine:init", () => {
+=======
+window.PerfectScrollbar = PerfectScrollbar;
+
+document.addEventListener("alpine:init", () => {
+    Alpine.data("mainState", () => {
+
+
+        let lastScrollTop = 0;
+        const init = function() {
+            window.addEventListener("scroll", () => {
+                let st =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                if (st > lastScrollTop) {
+                    // downscroll
+                    this.scrollingDown = true;
+                    this.scrollingUp = false;
+                } else {
+                    // upscroll
+                    this.scrollingDown = false;
+                    this.scrollingUp = true;
+                    if (st == 0) {
+                        //  reset
+                        this.scrollingDown = false;
+                        this.scrollingUp = false;
+                    }
+                }
+                lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+            });
+        };
+
+        const getTheme = () => {
+            if (window.localStorage.getItem("dark")) {
+                return JSON.parse(window.localStorage.getItem("dark"));
+            }
+            return (!!window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            );
+        };
+        const setTheme = (value) => {
+            window.localStorage.setItem("dark", value);
+            //alert("toggle");
+
+        };
+        return {
+            init,
+            isDarkMode: getTheme(),
+            toggleTheme() {
+                this.isDarkMode = !this.isDarkMode;
+                setTheme(this.isDarkMode);
+                //alert("toggle");
+            },
+            isSidebarOpen: window.innerWidth > 1024,
+            isSidebarHovered: false,
+            handleSidebarHover(value) {
+                if (window.innerWidth < 1024) {
+                    return;
+                }
+                this.isSidebarHovered = value;
+            },
+            handleWindowResize() {
+                if (window.innerWidth <= 1024) {
+                    this.isSidebarOpen = false;
+                } else {
+
+                    this.isSidebarOpen = true;
+                }
+            },
+            scrollingDown: false,
+            scrollingUp: false,
+        };
+    });
+});
+document.addEventListener("alpine:init", () => {
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
     Alpine.data("setup", () => {
 
@@ -59,7 +138,11 @@ document.addEventListener("alpine:init", () => {
             if (window.localStorage.getItem('color')) {
                 return window.localStorage.getItem('color')
             }
+<<<<<<< HEAD
             return 'mycolor'
+=======
+            return 'cyan'
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
         }
 
         const setColors = (color) => {
@@ -191,11 +274,14 @@ document.addEventListener("alpine:init", () => {
             },
             scrollingDown: false,
             scrollingUp: false,
+<<<<<<< HEAD
             contact_links_expm: [
                 { "facebook": "" },
                 { "wahtsApp": "" },
                 { "twitter": "" }
             ]
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
         }
     });

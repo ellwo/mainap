@@ -21,6 +21,7 @@ class ChatRoom extends Model
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -32,6 +33,8 @@ class ChatRoom extends Model
 
 
 
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     function from(){
 
         return $this->morphTo();
@@ -66,17 +69,21 @@ class ChatRoom extends Model
     public function messages(){
         return $this->hasMany(Message::class);
     }
+<<<<<<< HEAD
     public function lasttmessage()
     {
         # code...
         return $this->messages()->orderby("id","desc")->first();
     }
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
 
 
     public function unread_messages(){
         return $this->hasMany(Message::class)->where("is_readed","=","0")->orderBy("id","desc");
     }
+<<<<<<< HEAD
 
     public function unreaded_messages($chattings_id){
         return $this->hasMany(Message::class)->where("is_readed","=","0")->where("sender","!=",$chattings_id)->orderBy("id","desc");
@@ -153,4 +160,6 @@ class ChatRoom extends Model
     }
 
 
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 }

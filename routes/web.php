@@ -3,12 +3,18 @@
 use App\Http\Controllers\BussinseController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProfileController;
+<<<<<<< HEAD
 use App\Http\Controllers\UploadeController;
 use App\Models\Bussinse;
 use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+=======
+use App\Models\Bussinse;
+use App\Models\City;
+use Illuminate\Http\Request;
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,13 +32,17 @@ use Illuminate\Support\Facades\Route;
 
 
 
+<<<<<<< HEAD
 // Route::get('/ch{any}', [App\Http\Controllers\ChatController::class,"index"])
 //     ->middleware('auth')
 //     ->where('any', '.*');
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
 
 
 
+<<<<<<< HEAD
 
 
 Route::post('/block',[App\Http\Controllers\Block\BlockingController::class,'block'])->name("block");
@@ -55,6 +65,11 @@ Route::get("/getcity",function(Request $request){
 
     $user=User::find(Auth::user()->id);
     return response($user,200);
+=======
+Route::get("/getcity",function(Request $request){
+
+    return City::all();
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
 });
 
@@ -70,10 +85,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post("/b",[BussinseController::class,'follow_bussinse'])->name("b.follow");
+<<<<<<< HEAD
 Route::get("/b/@{username}",[BussinseController::class,'show'])->name("b.show");
 Route::resource('/b',BussinseController::class)->only(['index','update','store','edit','create'])->name('index','b');
 Route::post("/uploade",[UploadeController::class,'store'])->name("uploade");
 Route::post("/delete.uploade",[UploadeController::class,'delete'])->name("delete.uploade");
+=======
+Route::get("/b/{username}",[BussinseController::class,'show'])->name("b.show");
+Route::resource('/b',BussinseController::class)->only(['index','update','edit'])->name('index','b');
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
 
 

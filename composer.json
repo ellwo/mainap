@@ -21,7 +21,10 @@
         "nagy/laravel-rating": "^2.2",
         "nuwave/lighthouse": "^5.33",
         "predis/predis": "^1.1",
+<<<<<<< HEAD
         "pusher/pusher-php-server": "^7.0",
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
         "rennokki/befriended": "*",
         "spatie/laravel-json-api-paginate": "^1.10",
         "spatie/laravel-menu": "^3.7",

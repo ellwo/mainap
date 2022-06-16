@@ -18,8 +18,12 @@ class BussinseController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
        $bussinses= Bussinse::with("department:id,name")->with("user:id")->withCount("followers_b")->withCount("products as products_count")->withAvg("ratings:value")->get();
         return view('bussinsess.bussinse-card',compact('bussinses'));
+=======
+        return response(['ss'=>'yes'],200);
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     }
 
     /**
@@ -30,7 +34,10 @@ class BussinseController extends Controller
     public function create()
     {
         //
+<<<<<<< HEAD
         return view('bussinsess.create');
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     }
 
     /**
@@ -41,8 +48,11 @@ class BussinseController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
 
         return dd($request->all());
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
         //
     }
 

@@ -98,7 +98,11 @@ class ProfileController extends Controller
     public function show(User $user,$username)
     {
 
+<<<<<<< HEAD
         $user=User::where("username","=",$username)->withCount("products as products_count")->withCount("services as services_count")->with("city:id,name")->first();
+=======
+        $user=User::where("id","=",$user->id)->withCount("products as products_count")->withCount("services_count")->with("city:id,name")->first();
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
         if($user!=null)
         return view("profile.index",compact("user"));
         else

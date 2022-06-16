@@ -17,6 +17,7 @@ class Message extends Model
         'content'
 
     ];
+<<<<<<< HEAD
     /**
  * The attributes that should be cast.
  *
@@ -25,6 +26,8 @@ class Message extends Model
 protected $casts = [
     'created_at' => 'datetime:h:i A',
 ];
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
     function chatroom(){
         return $this->belongsTo(ChatRoom::class);

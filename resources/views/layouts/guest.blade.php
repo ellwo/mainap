@@ -23,13 +23,21 @@
 
     @livewireStyles
     <!-- Scripts -->
+<<<<<<< HEAD
 </head>
 
 <body  class="antialiased" >
+=======
+    <script src="{{ asset('js/app.js') }}" defer></script>
+</head>
+
+<body class="antialiased" >
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
 
 
 
+<<<<<<< HEAD
     <div   x-data="setup()" @resize.window="handleWindowResize" x-init="$refs.loading.classList.add('hidden');
     setColors('mycolor'); isSidebarOpen=false" :class="{ 'dark': isDark}">
 
@@ -38,6 +46,12 @@
 
 
 
+=======
+    <div x-data="setup()" @resize.window="handleWindowResize" x-init="$refs.loading.classList.add('hidden');
+    setColors('mycolor'); isSidebarOpen=false" :class="{ 'dark': isDark}">
+
+
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     <div   class="min-h-screen text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
             <!-- Loading screen -->
 
@@ -55,11 +69,18 @@
             >
             <x-navbar/>
 
+<<<<<<< HEAD
                 <main  class="flex-1 px-4 sm:px-6">
 
                     {{$slot}}
 
 
+=======
+                <main class="flex-1 px-4 sm:px-6">
+
+                    {{$slot}}
+
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
                 </main>
 
 
@@ -68,9 +89,14 @@
         </div>
     </div>
 
+<<<<<<< HEAD
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     @livewireScripts
+=======
+    @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
     @isset($script)
         {{$script}}

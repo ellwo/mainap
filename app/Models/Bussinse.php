@@ -22,9 +22,13 @@ class Bussinse extends Model implements Blocking,Followable
         LaravelSubQueryTrait,
         \Znck\Eloquent\Traits\BelongsToThrough,
         \Staudenmeir\EloquentHasManyDeep\HasRelationships,
+<<<<<<< HEAD
         CanConvristion
         ,Block
         ,BlockFilterable,Reportable,CanBeFollowed;
+=======
+        CanConvristion,Block,BlockFilterable,Reportable,CanBeFollowed;
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     protected $fillable=[
         "name",
         "username",

@@ -96,7 +96,10 @@ class BussinseController extends Controller
     public function create()
     {
         //
+<<<<<<< HEAD
         return view("bussinsess.create");
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
     }
 
     /**

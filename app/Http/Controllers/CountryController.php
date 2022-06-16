@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Http\Resources\ChatRoomResource;
 use App\Models\Bussinse;
 use App\Models\ChatMessage;
@@ -13,12 +14,21 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+=======
+use App\Models\Bussinse;
+use App\Models\ChatMessage;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\User;
+use Illuminate\Http\Request;
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
 class CountryController extends Controller
 {
     //
     public function index(Request $request)
     {
+<<<<<<< HEAD
 
 
 
@@ -56,6 +66,8 @@ class CountryController extends Controller
         $chatrom= $bus->chatrooms_only()->get();
                 return ChatRoomResource::collection($chatrom)->additional(["chatting_id"=>$bus->id]);
 
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
         # code...
         $coun=[];//Country::with('bussinses.user','bussinses.cities','bussinses.parts')->paginate(2);
 

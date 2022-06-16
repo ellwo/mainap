@@ -2,7 +2,10 @@
 namespace App\Http\Traits;
 
 use Alexmg86\LaravelSubQuery\Traits\LaravelSubQueryTrait;
+<<<<<<< HEAD
 use App\Models\Bussinse;
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 use App\Models\ChatRoom;
 use App\Models\User;
 use Str;
@@ -16,9 +19,15 @@ trait CanConvristion{
 
 
 
+<<<<<<< HEAD
         // if($this->blocking(get_class($model)) || $model->blocks($this)){
         //     return null;
         // }
+=======
+        if($this->blocks($model) || $model->blocks($this)){
+            return null;
+        }
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
         $model_id=$model->id;
         $count=$this->chatrooms()
@@ -72,7 +81,11 @@ trait CanConvristion{
 
         //return;
 
+<<<<<<< HEAD
         return   ChatRoom::with("unread_messages")->
+=======
+        return   ChatRoom::with("messages")->
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
         where(function ($query) {
             $query->where("to_id",$this->id)
             ->where("to_type",get_class($this));
@@ -92,6 +105,7 @@ trait CanConvristion{
         # code...
     }
 
+<<<<<<< HEAD
     public function chatrooms_only()
     {
         # code...
@@ -140,6 +154,8 @@ trait CanConvristion{
         # code...
     }
 
+=======
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
 
 
 }

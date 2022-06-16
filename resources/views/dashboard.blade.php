@@ -227,7 +227,14 @@
                 </div>
                 <ul class="bg-white">
                     <li>
+<<<<<<< HEAD
                         <button class="rounded-full bg-primary hover:bg-primary-100 hover:text-dark ">
+=======
+                        <button class="rounded-full bg-primary
+                         hover:bg-primary-100
+                          hover:text-dark
+                        ">
+>>>>>>> e898d1e3573b758bd51eb91352a82c68d3ab8ff1
                             Primary
 
                         </button>
